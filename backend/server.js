@@ -1,17 +1,13 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
-const { ipcMain } = require('electron');
 
-// Create Express app
-const expressApp = express();
-const port = 5000;  // Backend API port
+const app = express();
+const port = 5000;  // Backend server will run on this port
 
 // Enable CORS (Cross-Origin Resource Sharing)
-expressApp.use(cors());
-expressApp.use(express.json());
+app.use(cors());
+app.use(express.json());  // For parsing application/json
 
 // Set up SQLite3 database connection
 const db = new sqlite3.Database('./database.db', (err) => {
@@ -28,7 +24,7 @@ db.serialize(() => {
 });
 
 // API endpoint to get all items
-expressApp.get('/api/items', (req, res) => {
+app.get('/api/items', (req, res) => {
     db.all('SELECT * FROM items', [], (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -39,7 +35,7 @@ expressApp.get('/api/items', (req, res) => {
 });
 
 // API endpoint to add an item
-expressApp.post('/api/items', (req, res) => {
+app.post('/api/items', (req, res) => {
     const { name } = req.body;
     const stmt = db.prepare('INSERT INTO items (name) VALUES (?)');
     stmt.run(name, function (err) {
@@ -53,43 +49,6 @@ expressApp.post('/api/items', (req, res) => {
 });
 
 // Start the Express server
-expressApp.listen(port, () => {
+app.listen(port, () => {
     console.log(`Express server is running at http://localhost:${port}`);
-});
-
-// Now we start the Electron app
-let win;
-
-function createWindow() {
-    win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-        },
-    });
-
-    // Load Vue app served by Vite
-    win.loadURL('http://localhost:5173');  // Vite dev server URL
-
-    // Uncomment for debugging
-    win.webContents.openDevTools();
-}
-
-app.whenReady().then(() => {
-    createWindow();
-
-    app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
-        }
-    });
-});
-
-// Quit when all windows are closed
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
 });
