@@ -2,12 +2,12 @@ const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 
-const app = express();
+const server = express();
 const port = 5000;  // Backend server will run on this port
 
 // Enable CORS (Cross-Origin Resource Sharing)
-app.use(cors());
-app.use(express.json());  // For parsing application/json
+server.use(cors());
+server.use(express.json());  // For parsing application/json
 
 // Set up SQLite3 database connection
 const db = new sqlite3.Database('./database.db', (err) => {
@@ -24,7 +24,7 @@ db.serialize(() => {
 });
 
 // API endpoint to get all items
-app.get('/api/items', (req, res) => {
+server.get('/api/items', (req, res) => {
     db.all('SELECT * FROM items', [], (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -35,7 +35,7 @@ app.get('/api/items', (req, res) => {
 });
 
 // API endpoint to add an item
-app.post('/api/items', (req, res) => {
+server.post('/api/items', (req, res) => {
     const { name } = req.body;
     const stmt = db.prepare('INSERT INTO items (name) VALUES (?)');
     stmt.run(name, function (err) {
@@ -49,6 +49,8 @@ app.post('/api/items', (req, res) => {
 });
 
 // Start the Express server
-app.listen(port, () => {
-    console.log(`Express server is running at http://localhost:${port}`);
-});
+// server.listen(port, () => {
+//     console.log(`Express server is running at http://localhost:${port}`);
+// });
+
+export default server;
