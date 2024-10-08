@@ -22,7 +22,7 @@ export default {
         // Fetch items from the Express API
         const fetchItems = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/items');
+                const response = await axios.get('http://localhost:5000/items');
                 items.value = response.data.items;
             } catch (error) {
                 console.error('Error fetching items:', error);
@@ -34,7 +34,7 @@ export default {
             // const name = prompt('Enter item name:');
             if (name.value) {
                 try {
-                    await axios.post('http://localhost:5000/api/items', { name: name.value });
+                    await axios.post('http://localhost:5000/items', { name: name.value });
                     fetchItems();  // Refresh the list after adding the item
                 } catch (error) {
                     console.error('Error adding item:', error);

@@ -11,7 +11,6 @@ server.get('/api/items', (req, res) => {
     });
 });
 
-// API endpoint to add an item
 server.post('/api/items', (req, res) => {
     const { name } = req.body;
     const stmt = db.prepare('INSERT INTO items (name) VALUES (?)');

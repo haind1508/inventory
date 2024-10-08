@@ -15,7 +15,7 @@ const products =
 const items =
 `CREATE TABLE IF NOT EXISTS items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-	name TEXT
+	name varchar(255) NOT NULL
 )`
 
 const migrations = [products, items]
