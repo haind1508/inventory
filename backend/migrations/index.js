@@ -18,6 +18,6 @@ const items =
 	name TEXT
 )`
 
-const database = [products, items]
+const migrations = [products, items]
 
-export default database
+export default migrations

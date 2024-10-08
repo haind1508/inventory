@@ -1,4 +1,4 @@
-import database from './migrations'
+import migrations from './migrations'
 const sqlite3 = require('sqlite3').verbose();
 
 // Set up SQLite3 database connection
@@ -12,7 +12,7 @@ const db = new sqlite3.Database('./database.db', (err) => {
 
 // Migration
 db.serialize(() => {
-    database.forEach(item => {
+    migrations.forEach(item => {
         db.run(item);
     })
 });
