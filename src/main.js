@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import { join } from 'path';
-import server from '../backend/setup';
+import server from '../backend/index';
 
 // setup server
 const port = 5000

@@ -1,20 +1,20 @@
-import Items from "../models/item"
+// import Items from "../models/item"
 
-const ItemService = class {
-    constructor(req, res) {
-        this.req = req
-        this.res = res
-    }
+// const ItemService = class {
+//     constructor(req, res) {
+//         this.req = req
+//         this.res = res
+//     }
 
-    async index() {
+//     async index() {
 
-    }
+//     }
 
-    async store() {
-        const obj = {name: this.req.body.name ?? ''}
-        const item = new Items(obj)
-        return item.save()
-    }
-}
+//     async store() {
+//         const obj = {name: this.req.body.name ?? ''}
+//         const item = new Items(obj)
+//         return item.save()
+//     }
+// }
 
-export default ItemService
+// export default ItemService
