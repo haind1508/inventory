@@ -28,7 +28,7 @@
     gap: 1rem;
     align-items: center;
     padding: 0.5rem;
-    height: 2rem;
+    height: 3rem;
     background: var(--bg-logo);
     font-size: 20px;
     color: white;
