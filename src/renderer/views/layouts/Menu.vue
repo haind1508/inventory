@@ -2,14 +2,14 @@
     <div>
         <ul class="menus">
             <template v-for="menu in dashboard">
-                <li>
+                <li :active="route.name == menu.name">
                     <router-link :to="{name: menu.name}" class="menu-item"><span>{{ menu.label }}</span></router-link>
                 </li>
             </template>
         </ul>
         <ul class="menus">
             <template v-for="menu in menus">
-                <li>
+                <li :active="route.name == menu.name">
                     <router-link :to="{name: menu.name}" class="menu-item"><span>{{ menu.label }}</span></router-link>
                 </li>
             </template>
@@ -20,6 +20,8 @@
 <script setup>
 import { onMounted, onBeforeMount, computed, watch, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const menus = ref([
     {

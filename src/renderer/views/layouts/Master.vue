@@ -1,8 +1,7 @@
 <template>
     <div class="master-layout">
         <div class="menu">
-            <div class="logo">
-            </div>
+            <Logo></Logo>
             <Menu></Menu>
         </div>
         <main class="main-layout">
@@ -10,11 +9,11 @@
             <main class="main">
                 <router-view></router-view>
             </main>
-            <footer class="footer"></footer>
         </main>
     </div>
 </template>
 
 <script setup>
 import Menu from './Menu.vue';
+import Logo from './Logo.vue'
 </script>
