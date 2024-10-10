@@ -1,6 +1,6 @@
 <template>
     <div class="gap-3 wrapper-scroll">
-        <form class="flex content-between gap-3" @submit.prevent="submit()">
+        <form class="flex content-between gap-3" @submit.prevent="index()">
             <div class="flex flex-col flex-1">
                 <div class="flex w-full gap-3">
                     <fieldset class="form-input w-[30%]">

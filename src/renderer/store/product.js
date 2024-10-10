@@ -2,11 +2,18 @@ import { defineStore } from 'pinia'
 import { initPinia } from '@/store/setup'
 import api from '@/api'
 
+const initSearch = {
+    name: null,
+    SKU: null,
+}
+
 const createStore = defineStore('product', {
     state: () => {
         return {
             search: {
-
+                sort: null,
+                sort_by: 'asc',
+                ...initSearch
             },
 
         }
@@ -32,7 +39,16 @@ const createStore = defineStore('product', {
                 .catch((error) => {
                     return false
                 })
-        }
+        },
+
+        // mutation
+        setSearch() {
+            this.search.sort = null
+            this.search.sort_by = 'asc'
+        },
+        resetSearch() {
+            this.search = {...this.search, ...initSearch}
+        },
     },
 })
 
