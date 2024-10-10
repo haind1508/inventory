@@ -41,21 +41,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Sữa bột</td>
-                        <td>478937198379131</td>
-                        <td>thùng</td>
-                        <td>100,000</td>
-                        <td>120 ngày</td>
-                        <td>Xuất theo lô</td>
-                    </tr>
-                    <tr>
-                        <td>Sữa hộp</td>
-                        <td>478937198379131</td>
-                        <td>chai</td>
-                        <td>100,000</td>
-                        <td>120 ngày</td>
-                        <td></td>
+                    <tr v-for="item in items">
+                        <td>{{ item.name }}</td>
+                        <td class="text-center">{{ item.SKU }}</td>
+                        <td class="text-center">{{ item.unit }}</td>
+                        <td class="text-right">{{ number(item.price, 2) }}</td>
+                        <td class="text-center">{{ item.expire }}</td>
+                        <td>{{ item.remark }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -64,7 +56,7 @@
         <ProductAddModal
             v-if="showAdd"
             :show="showAdd"
-            @close="onCloseAdd()"
+            @close="onCloseAdd($event)"
             @save="onSaveAdd($event)" />
     </div>
 </template>
@@ -74,21 +66,31 @@ import { onMounted, onBeforeMount, computed, watch, ref } from 'vue'
 import { productStore } from '@/store/product';
 import ProductAddModal from './ProductAddModal.vue'
 
-
 const showAdd = ref(false)
+const items = ref([])
+
 const onShowAdd = () => {
     showAdd.value = true
 }
-const onCloseAdd = () => {
+const onCloseAdd = (event) => {
     showAdd.value = false
+    if(event) {
+        index()
+    }
 }
-const onSaveAdd = () => {
-
+const onSaveAdd = (event) => {
+    showAdd.value = false
+    if(event) {
+        index()
+    }
 }
 
 const index = async () => {
     await productStore.index({}).then((res) => {
         console.log(res)
+        if(res && res.code == 200) {
+            items.value = res.data
+        }
     })
 }
 

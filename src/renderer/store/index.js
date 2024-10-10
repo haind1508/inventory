@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { initPinia } from '@/store/setup'
+import { t } from '@/i18n'
 
 const createStore = defineStore('app', {
     state: () => {
@@ -37,7 +38,7 @@ const createStore = defineStore('app', {
             }
         },
         showErrorModal(value) {
-            this.errorModal.title = jp.error_title
+            this.errorModal.title = t("title.error")
             this.errorModal.message = value
             this.errorModal.active = true
         },

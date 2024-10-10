@@ -22,7 +22,7 @@ const ProductController = {
             const schema = Joi.object({
                 name  : Joi.string().required().min(2).max(200),
                 unit  : Joi.string().required().max(50),
-                SKU   : Joi.string().allow(null, '').max(6),
+                SKU   : Joi.string().allow(null, '').max(50),
                 price : Joi.number().allow(0),
                 expire: Joi.number().allow(0, null),
                 remark: Joi.string().allow(null, '').max(1000),

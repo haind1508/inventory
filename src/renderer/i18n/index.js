@@ -20,9 +20,18 @@ const messages = {
             back: "Quay lại",
             refresh: "Tải lại",
             add: "Thêm mới",
+            confirm: "Xác nhận"
         },
         modal: {
             add_product: "Thêm mặt hàng"
+        },
+        title: {
+            notify: "Thông báo",
+            error: "Lỗi",
+            confirm: "Xác nhận",
+        },
+        msg: {
+            save_ok: "Lưu thành công"
         }
     }
 }
