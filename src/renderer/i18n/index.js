@@ -8,7 +8,7 @@ const messages = {
                 SKU: "SKU",
                 unit: "Đơn vị",
                 price: "Giá",
-                expire: "Hạn",
+                expire: "Hạn sử dụng",
                 remark: "Ghi chú",
             }
         },
@@ -19,14 +19,23 @@ const messages = {
             cancel: "Hủy",
             back: "Quay lại",
             refresh: "Tải lại",
+            add: "Thêm mới",
+        },
+        modal: {
+            add_product: "Thêm mặt hàng"
         }
     }
 }
 
-export default createI18n({
+
+const i18n = createI18n({
     locale: 'vi', // <--- 1
     // fallbackLocale: 'en', // <--- 2
     legacy: false, // <--- 3
     globalInjection: true, // <--- 4
     messages, // <--- 5
 })
+
+
+export const t = i18n.global.t
+export default i18n
