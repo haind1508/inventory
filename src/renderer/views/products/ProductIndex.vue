@@ -20,6 +20,14 @@
             </div>
         </form>
 
+        <div class="flex">
+            <div class="w-1/3"></div>
+            <div class="w-1/3"></div>
+            <div class="w-1/3 flex gap-3 justify-end">
+                <button type="button" class="btn green w-[6rem]" @click="onShowAdd()">{{ $t("button.add") }}</button>
+            </div>
+        </div>
+
         <div class="parent-scroll">
             <table class="view-scroll t-border">
                 <thead>
@@ -52,5 +60,28 @@
                 </tbody>
             </table>
         </div>
+
+        <ProductAddModal
+            v-if="showAdd"
+            :show="showAdd"
+            @close="onCloseAdd()"
+            @save="onSaveAdd($event)" />
     </div>
 </template>
+
+<script setup>
+import { onMounted, onBeforeMount, computed, watch, ref } from 'vue'
+import ProductAddModal from './ProductAddModal.vue'
+
+
+const showAdd = ref(false)
+const onShowAdd = () => {
+    showAdd.value = true
+}
+const onCloseAdd = () => {
+    showAdd.value = false
+}
+const onSaveAdd = () => {
+
+}
+</script>

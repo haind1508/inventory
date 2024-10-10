@@ -7,6 +7,7 @@ import i18n from "@/i18n"
 
 import App from './App.vue'
 import router from './router'
+import { initPinia } from '@/store/setup'
 import './style.css'
 
 /**
@@ -18,6 +19,7 @@ const app = createApp(App)
 app.use(VueCookies, { expire: '7d' })
     .use(router)
     .use(i18n)
+    .use(initPinia)
 
 // add component
 

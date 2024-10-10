@@ -153,7 +153,7 @@ button.btn {
     padding: 4px 8px 4px 8px;
     border-radius: 4px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 300;
     line-height: 1;
 
     background: #408dfb;
@@ -167,6 +167,10 @@ button.btn:hover {
 button.btn.silver {
     background: #d0d0d0;
     color: black;
+}
+
+button.btn.green {
+    background: rgb(36, 226, 115);
 }
 
 /* table */
