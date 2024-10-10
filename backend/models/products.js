@@ -1,7 +1,7 @@
 import sequelize from './index';
 const { DataTypes } = require('sequelize');
 
-const Product = sequelize.define('User', {
+const Product = sequelize.define('Product', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -27,7 +27,7 @@ const Product = sequelize.define('User', {
         type: DataTypes.INTEGER,
         defaultValue: null
     },
-    remarks: {
+    remark: {
         type: DataTypes.TEXT,
         defaultValue: null
     }

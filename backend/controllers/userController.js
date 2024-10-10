@@ -1,7 +1,7 @@
-import User from '../models/user';
+import User from '../models/User';
 
 // Controller for handling user-related logic
-const userController = {
+const UserController = {
     // Fetch all users
     getUsers: async (req, res) => {
         try {
@@ -24,4 +24,4 @@ const userController = {
     }
 };
 
-export default userController;
+export default UserController;

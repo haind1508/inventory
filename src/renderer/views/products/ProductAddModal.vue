@@ -1,37 +1,37 @@
 <template>
     <Modal :show="show" :title="title" maxWidth="max-w-3xl" @close="onClose()">
-        <div class="p-2 flex flex-col gap-1">
+        <div class="flex flex-col gap-1 p-2">
             <div class="flex gap-3">
-                <fieldset class="form-input required w-2/3">
+                <fieldset class="w-2/3 form-input required">
                     <legend>{{ $t("attr.product.name") }}</legend>
-                    <input type="text" class="form-control w-full" required v-model="payload.name" >
+                    <input type="text" class="w-full form-control" required v-model="payload.name" >
                 </fieldset>
-                <fieldset class="form-input w-1/3">
+                <fieldset class="w-1/3 form-input">
                     <legend>{{ $t("attr.product.SKU") }}</legend>
-                    <input type="text" class="form-control w-full" v-model="payload.SKU">
+                    <input type="text" class="w-full form-control" v-model="payload.SKU">
                 </fieldset>
             </div>
             <div class="flex gap-3">
-                <div class="flex gap-3 w-2/3">
-                    <fieldset class="form-input required w-1/2">
+                <div class="flex w-2/3 gap-3">
+                    <fieldset class="w-1/2 form-input required">
                         <legend>{{ $t("attr.product.unit") }}</legend>
-                        <input type="text" class="form-control w-full" required v-model="payload.unit">
+                        <input type="text" class="w-full form-control" required v-model="payload.unit">
                     </fieldset>
-                    <fieldset class="form-input w-1/2">
+                    <fieldset class="w-1/2 form-input">
                         <legend>{{ $t("attr.product.price") }}</legend>
-                        <input type="number" class="form-control w-full" v-model="payload.price">
+                        <input type="number" class="w-full form-control" v-model="payload.price">
                     </fieldset>
                 </div>
-                <fieldset class="form-input w-1/3">
+                <fieldset class="w-1/3 form-input">
                     <legend>{{ $t("attr.product.expire") }} (days)</legend>
-                    <input type="number" class="form-control w-full" v-model="payload.expire">
+                    <input type="number" class="w-full form-control" v-model="payload.expire">
                 </fieldset>
             </div>
 
             <div class="flex">
-                <fieldset class="form-input w-full">
+                <fieldset class="w-full form-input">
                     <legend>{{ $t("attr.product.remark") }}</legend>
-                    <textarea class="form-control w-full min-h-12"></textarea v-model="payload.remark">
+                    <textarea class="w-full form-control min-h-12"></textarea v-model="payload.remark">
                 </fieldset>
             </div>
 
@@ -47,6 +47,7 @@
 import { onMounted, ref } from 'vue'
 import Modal from '../component/layout/Modal.vue';
 import { t } from '@/i18n'
+import { productStore } from '@/store/product';
 
 const title = t("modal.add_product")
 const props = defineProps(['show'])
@@ -59,12 +60,14 @@ const payload = ref({
     name: null,
     SKU: null,
     unit: null,
-    price: null,
+    price: 0,
     expire: null,
 })
 
 const onSave = async () => {
-    
+    await productStore.store(payload.value).then((res) => {
+        console.log(res)
+    })
 }
 
 </script>

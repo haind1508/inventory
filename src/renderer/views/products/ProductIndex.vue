@@ -1,16 +1,16 @@
 <template>
-    <div class="wrapper-scroll gap-3">
+    <div class="gap-3 wrapper-scroll">
         <form class="flex content-between gap-3" @submit.prevent="submit()">
-            <div class="flex-1 flex flex-col">
+            <div class="flex flex-col flex-1">
                 <div class="flex w-full gap-3">
                     <fieldset class="form-input w-[30%]">
                         <legend>{{ $t("attr.product.name") }}</legend>
-                        <input type="text" class="form-control w-full">
+                        <input type="text" class="w-full form-control">
                     </fieldset>
     
                     <fieldset class="form-input w-[30%]">
                         <legend>{{ $t("attr.product.SKU") }}</legend>
-                        <input type="text" class="form-control w-full">
+                        <input type="text" class="w-full form-control">
                     </fieldset>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <div class="flex">
             <div class="w-1/3"></div>
             <div class="w-1/3"></div>
-            <div class="w-1/3 flex gap-3 justify-end">
+            <div class="flex justify-end w-1/3 gap-3">
                 <button type="button" class="btn green w-[6rem]" @click="onShowAdd()">{{ $t("button.add") }}</button>
             </div>
         </div>
@@ -71,6 +71,7 @@
 
 <script setup>
 import { onMounted, onBeforeMount, computed, watch, ref } from 'vue'
+import { productStore } from '@/store/product';
 import ProductAddModal from './ProductAddModal.vue'
 
 
@@ -84,4 +85,14 @@ const onCloseAdd = () => {
 const onSaveAdd = () => {
 
 }
+
+const index = async () => {
+    await productStore.index({}).then((res) => {
+        console.log(res)
+    })
+}
+
+onMounted(async () => {
+    await index()
+})
 </script>

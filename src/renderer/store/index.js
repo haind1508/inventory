@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { initPinia } from '@/store/setup'
 
-const store = defineStore('app', {
+const createStore = defineStore('app', {
     state: () => {
         return {
             loading: false,
@@ -50,6 +50,7 @@ const store = defineStore('app', {
     },
 })
 
+export const store = createStore(initPinia)
 export const useStore = () => {
-    return store(initPinia)
+    return store
 }
