@@ -1,8 +1,8 @@
 {
     "name": "inventory",
     "productName": "Inventory",
-    "version": "1.0.0",
-    "description": "Mini template for electron-forge combine with vite and vue3.",
+    "version": "1.0.1",
+    "description": "Inventory app by haind0185.",
     "main": ".vite/build/main.js",
     "build": {
         "appId": "haind0185.inventory.app",

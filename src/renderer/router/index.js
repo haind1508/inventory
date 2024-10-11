@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
     {
         path: '/',
-        name: "Master",
+        redirect: '/dashboard',
         component: () => import("@/views/layouts/Master.vue"),
         meta: {
             requiresAuth: true,
@@ -29,22 +29,23 @@ const routes = [
                 name: 'Export',
                 component: () => import("@/views/export/exportIndex.vue"),
             },
-        ]
-    },
-    {
-        path: '/:pathMatch(.*)*',
-        name: "NotFound",
-        component: () => import("@/views/errors/404NotFound.vue"),
-    },
-    {
-        path: '/errors',
-        children: [
             {
-                path: '/errors/401',
-                name: 'Unauthorize',
-                component: () => import("@/views/errors/401Unauthorized.vue"),
+                path: '/errors',
+                children: [
+                    {
+                        path: '/errors/401',
+                        name: 'Unauthorize',
+                        component: () => import("@/views/errors/401Unauthorized.vue"),
+                    },
+                ],
             },
-        ],
+            {
+                path: '/:pathMatch(.*)*',
+                name: "NotFound",
+                redirect: '/dashboard',
+                component: () => import("@/views/errors/404NotFound.vue"),
+            },
+        ]
     },
 ]
 
@@ -52,5 +53,12 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 })
+
+router.beforeEach(async (to, from, next) => {
+    console.log(from)
+    console.log(to)
+    next()
+})
+
 
 export default router
