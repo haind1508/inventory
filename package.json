@@ -5,7 +5,7 @@
     "description": "Mini template for electron-forge combine with vite and vue3.",
     "main": ".vite/build/main.js",
     "build": {
-        "appId": "com.example.myapp",
+        "appId": "haind0185.inventory.app",
         "publish": [
             {
                 "provider": "github",
