@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import { join } from 'path';
 import server from '../backend/index';
+const { autoUpdater } = require('electron-updater');
 
 // setup server
 const port = 5000
@@ -33,6 +34,9 @@ const createWindow = () => {
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();
+
+    autoUpdater.checkForUpdatesAndNotify();
+    
 };
 
 // This method will be called when Electron has finished
